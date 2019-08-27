@@ -29,11 +29,15 @@ int main()
             read = fread(&px, sizeof(char), 1, fin);
             rev[i] = px;
         }
+        row++;
+    }
 
+
+    row = 0;
+    while(row < height) {
         for(i = 0; i < width; i++)
             if(i < width && row < height)
                 fwrite(&rev[i], sizeof(char), 1, fout);
-
         row++;
     }
 
