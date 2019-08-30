@@ -22,6 +22,14 @@ int main(int argc, char** argv)
 	// namedWindow("Display window", WINDOW_AUTOSIZE); // Create a window for display.
 	// imshow("Display window", image);                // Show our image inside it.
 	// waitKey(0); // Wait for a keystroke in the window
+	
+	
+	std::vector<cv::Vec3b> pixels(image.rows * image.cols);
+	cv::Mat m(image.rows, image.cols, CV_8UC3, &pixels[0]);
+	image.copyTo(m);
 
+	cout << *pixels.begin() << endl;
+	
+	system("pause");
 	return 0;
 }
