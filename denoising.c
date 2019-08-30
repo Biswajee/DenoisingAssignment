@@ -44,5 +44,14 @@ int main()
     fclose(fout);
     fclose(fin);
 
+    // console output !
+    row = 0;
+    while(row < height) {
+        for(i = 0; i < width; i++)
+            if(i < width && row < height)
+                printf("%s", &rev[i]);
+        row++;
+    }
+
     return 0;
 }
