@@ -1,4 +1,4 @@
-test/
+*.dll
 result.raw
-opencv/
-DenoisingService/
+External Libraries/opencv/java
+External Libraries/opencv/python
