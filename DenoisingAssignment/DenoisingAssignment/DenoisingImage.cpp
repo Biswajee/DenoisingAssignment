@@ -1,10 +1,13 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgcodecs.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include <string>
 using namespace cv;
 using namespace std;
+
+
 int main(int argc, char** argv)
 {
 	string imageName("../../lena.raw"); // by default
@@ -24,11 +27,56 @@ int main(int argc, char** argv)
 	// waitKey(0); // Wait for a keystroke in the window
 	
 	
-	std::vector<cv::Vec3b> pixels(image.rows * image.cols);
-	cv::Mat m(image.rows, image.cols, CV_8UC3, &pixels[0]);
-	image.copyTo(m);
+	cv::Mat grayMat, *p;
+	cv::cvtColor(image, grayMat, cv::COLOR_BGR2GRAY);
+	// cout << grayMat.size() << endl;
 
-	cout << *pixels.begin() << endl;
+	/*
+	for (int i = 0; i < grayMat.rows; i++) {
+		for (int j = 0; j < grayMat.cols; j++) {
+			cout << grayMat.row(i).col(j) << " ";
+		}
+		cout << endl;
+	}
+	*/
+
+	// int *a = grayMat.row(0).col(0).data;
+
+	//cout << a << endl;
+
+
+
+	
+	
+	//cout << image.size() << endl;
+	//cout << *pixels.begin() << endl;
+	//cout << "size: " << pixels.size() << endl;
+	
+	/*
+	// vector<cv::Vec3b> im_matrix;
+	int count = 0;
+	for (auto it = pixels.begin(); it != pixels.end(); it++) {
+		cout << *it << endl;
+		count++;
+	}
+	
+	cout << "Count = " << count << endl;
+	/*
+	int count = 0;
+	for (int x = 1; x < image.cols; x++)
+	{
+		for (int y = 1; y < image.rows; y++)
+		{
+			if (image.at<Vec3b>(x, y)[0] == 255)
+			{
+				count++;
+				cout << "in loop" << endl;
+			}
+
+		}
+	}
+	*/
+	cout << grayMat << endl;
 	
 	system("pause");
 	return 0;
