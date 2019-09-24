@@ -1,4 +1,6 @@
-# include <stdio.h>
+/* Adding Salt pepper noise to image to convert them to noisy images */
+
+#include <stdio.h>
 #include <stdlib.h>
 
 // Generate random numbers in a range...
@@ -10,13 +12,13 @@ int randomize(int lower, int upper) {
 int main() {
 	// input RAW image file
 	FILE *fin = fopen("lena.raw", "r");
+	
 	// output RAW image file
 	FILE *fout = fopen("noisy_lena.raw", "w");
 	
 	// variable declaration
 	int c, ch, i, j, ten_percent_noise, twenty_percent_noise, fifty_percent_noise;
 	unsigned int data[512][512];
-	
 	
 	c = getc(fin);
 	
@@ -44,26 +46,26 @@ int main() {
 		// adding 10% noise to image
 		printf("10%% Salt-pepper going in, Sir !");
 		while(ten_percent_noise--) {
-			data[randomize(512,512)][randomize(512,512)] = randomize(0, 255);
+			data[randomize(0,511)][randomize(0,511)] = randomize(0, 255);
 		}
 		break;
 		
 		case 2:
 		printf("20%% Salt-pepper going in ! That's spicy");
 		while(twenty_percent_noise--) {
-			data[randomize(512,512)][randomize(512,512)] = randomize(0, 255);
+			data[randomize(0,511)][randomize(0,511)] = randomize(0, 255);
 		}
 		break;
 		
 		case 3:
 		printf("50%% Salt-pepper, Jeez !");
 		while(fifty_percent_noise--) {
-			data[randomize(512,512)][randomize(512,512)] = randomize(0, 255);
+			data[randomize(0,511)][randomize(0,511)] = randomize(0, 255);
 		}
 		break;
 		
 		default:
-			printf("Am I a joke to you ?\n");
+			printf("\nAm I a joke to you ?\n");
 	}
 	
 	// writing data array to output file...
@@ -72,7 +74,6 @@ int main() {
 			fprintf(fout, "%d  ", data[i][j]);
 		}
 	}
-	
 	
 	// closing input and output files
 	fclose(fin);
