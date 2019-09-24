@@ -20,12 +20,6 @@ int main() {
 	
 	c = getc(fin);
 	
-	
-	printf("How much noise do you wish to add \n");
-	printf("1. 10%% noise \n2. 20%% noise \n3. 50%% noise \n");
-	printf("Enter your choice: ");	
-	scanf("%d", ch);
-	
 	for(i=0; i<512; i++) {
 		for(j=0; j<512; j++) {
 			data[i][j] = (unsigned int)c;	// following lines converted to pixel values
@@ -38,24 +32,31 @@ int main() {
 	twenty_percent_noise = 0.20 * 512 * 512; 
 	fifty_percent_noise = 0.50 * 512 * 512;
 	
+	
+	printf("How much noise do you wish to add \n");
+	printf("1. 10%% noise \n2. 20%% noise \n3. 50%% noise \n");
+	printf("Enter your choice: ");	
+	scanf("%d", &ch);
+	
 	switch(ch) {
+		
 		case 1:
 		// adding 10% noise to image
-		printf("10% Salt-pepper going in, Sir !");
+		printf("10%% Salt-pepper going in, Sir !");
 		while(ten_percent_noise--) {
 			data[randomize(512,512)][randomize(512,512)] = randomize(0, 255);
 		}
 		break;
 		
 		case 2:
-		printf("20% Salt-pepper going in ! That's spicy");
+		printf("20%% Salt-pepper going in ! That's spicy");
 		while(twenty_percent_noise--) {
 			data[randomize(512,512)][randomize(512,512)] = randomize(0, 255);
 		}
 		break;
 		
 		case 3:
-		printf("50% Salt-pepper, Jeez !");
+		printf("50%% Salt-pepper, Jeez !");
 		while(fifty_percent_noise--) {
 			data[randomize(512,512)][randomize(512,512)] = randomize(0, 255);
 		}
