@@ -1,5 +1,1 @@
-*.dll
-DenoisingAssignment/.vs/
-result.raw
-External Libraries/opencv/java
-External Libraries/opencv/python
+*.exe
