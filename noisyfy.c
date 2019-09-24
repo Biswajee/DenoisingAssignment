@@ -13,12 +13,22 @@ int main() {
 	// output RAW image file
 	FILE *fout = fopen("noisy_lena.raw", "w");
 	
-	int c = getc(fin);
+	// variable declaration
+	int c, ch, i, j, ten_percent_noise, twenty_percent_noise, fifty_percent_noise;
 	unsigned int data[512][512];
-	int i, j, ten_percent_noise, twenty_percent_noise, fity_percent_noise;
+	
+	
+	c = getc(fin);
+	
+	
+	printf("How much noise do you wish to add \n");
+	printf("1. 10%% noise \n2. 20%% noise \n3. 50%% noise \n");
+	printf("Enter your choice: ");	
+	scanf("%d", ch);
+	
 	for(i=0; i<512; i++) {
 		for(j=0; j<512; j++) {
-			data = (unsigned int)c;	// following lines converted to pixel values
+			data[i][j] = (unsigned int)c;	// following lines converted to pixel values
 			c = getc(fin);
 		}
 	}
@@ -28,9 +38,40 @@ int main() {
 	twenty_percent_noise = 0.20 * 512 * 512; 
 	fifty_percent_noise = 0.50 * 512 * 512;
 	
-	while(ten_percent_noise--) {
-		data[rand()][]
+	switch(ch) {
+		case 1:
+		// adding 10% noise to image
+		printf("10% Salt-pepper going in, Sir !");
+		while(ten_percent_noise--) {
+			data[randomize(512,512)][randomize(512,512)] = randomize(0, 255);
+		}
+		break;
+		
+		case 2:
+		printf("20% Salt-pepper going in ! That's spicy");
+		while(twenty_percent_noise--) {
+			data[randomize(512,512)][randomize(512,512)] = randomize(0, 255);
+		}
+		break;
+		
+		case 3:
+		printf("50% Salt-pepper, Jeez !");
+		while(fifty_percent_noise--) {
+			data[randomize(512,512)][randomize(512,512)] = randomize(0, 255);
+		}
+		break;
+		
+		default:
+			printf("Am I a joke to you ?\n");
 	}
+	
+	// writing data array to output file...
+	for(i=0; i<512; i++) {
+		for(j=0; j<512; j++) {
+			fprintf(fout, "%d  ", data[i][j]);
+		}
+	}
+	
 	
 	// closing input and output files
 	fclose(fin);
