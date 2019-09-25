@@ -12,6 +12,7 @@ Images introduced in the repository are typically **512 x 512** array with gray 
 ### Result
 
 The converted image can only be read in _Matlab_ which produces the following result:
-![Converted Image](outputs/mat_figure.jpg =250x)
+
+<img src="outputs/mat_figure.jpg" width="256" height="256" />
 
 Using the complementary _GNU Octave_ or any other imaging software to open the converted image results in error. 
