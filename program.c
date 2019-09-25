@@ -18,14 +18,19 @@ int main() {
 	int c = getc(fin);
 	
 	// Header line count :: generally 4 lines of header in PGM image
-	int count;
+	int count, pixel_counter = 0;
 	
 	while (c != EOF) {
 		if(count <= 4) {
 			fprintf(fout, "%c", c);		// header lines printed in document as is.
 			if(c == '\n') count++;
 		} else {
-			fprintf(fout, "%d", (unsigned int)c);	// following lines converted to pixel values
+			fprintf(fout, "%d ", (unsigned int)c);	// following lines converted to pixel values
+			pixel_counter++;
+			if(pixel_counter == 12) {
+				fprintf(fout, "\n");
+				pixel_counter = 0;
+			}
 		}
 		c = getc(fin);
 	}
