@@ -1,2 +1,2 @@
-img = imread('new_img.pgm');
-imshow(img);
+img1 = imread('new_img.pgm');
+imshow(img1);
